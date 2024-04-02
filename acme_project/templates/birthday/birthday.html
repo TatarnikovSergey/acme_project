@@ -9,12 +9,12 @@
   {% else %}
     <h1>Создать запись</h1>
   {% endif %}
-    <div class="card col-4 m-3">
+    <div class="card col-9 m-3">
     <div class="card-header">
       Калькулятор ожидания дня рождения
     </div>
     <div class="card-body">
-      <form method="post">
+      <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% if '/delete/' in request.path %}
         <p>{{ data.first_name }} {{ data.last_name }}</p>

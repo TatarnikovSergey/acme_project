@@ -11,6 +11,7 @@ class Birthday(models.Model):
     birthday = models.DateField('Дата рождения', validators=(real_age,))
     # price = models.IntegerField(
     #     validators=(MaxValueValidator(100), MinValueValidator(10)))
+    image = models.ImageField('Фото', blank=True, upload_to='birthday_images')
 
     class Meta:
         # Проверка уникальных значений всех полей в совокупности
@@ -19,3 +20,4 @@ class Birthday(models.Model):
             name='Unique person constraint',
             ),
         )
+        verbose_name = 'человек'
