@@ -1,5 +1,4 @@
 # from django.core.paginator import Paginator
-from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import (
     CreateView, DeleteView, DetailView, ListView, UpdateView
@@ -18,12 +17,10 @@ class BirthdayMixin:
 
 class BirthdayCreateView(BirthdayMixin, CreateView):
     form_class = BirthdayForm
-    pass
 
 
 class BirthdayUpdateView(BirthdayMixin, UpdateView):
     form_class = BirthdayForm
-    pass
 
 
 # class BirthdayCreateView(CreateView):
@@ -51,7 +48,7 @@ class BirthdayUpdateView(BirthdayMixin, UpdateView):
 #     success_url = reverse_lazy('birthday:list')
 
 
-# Наследуем класс от встроенного ListView:
+
 class BirthdayListView(ListView):
     """Класс для отображения списка объектов."""
     # Указываем модель, с которой работает CBV...
@@ -77,6 +74,7 @@ class BirthdayDeleteView(BirthdayMixin, DeleteView):
 
 class BirthdayDetailView(DetailView):
     model = Birthday
+
     # Переопределяем или дополняем словарь контекста:
     def get_context_data(self, **kwargs):
         # Получаем словарь контекста:
@@ -88,7 +86,6 @@ class BirthdayDetailView(DetailView):
         )
         # Возвращаем словарь контекста.
         return context
-
 
 # # Добавим опциональный параметр pk для выбора редактируемого объекта.
 # def birthday(request, pk=None):  # А это уже форма для POST запросов
