@@ -16,20 +16,13 @@ class BirthdayMixin:
     success_url = reverse_lazy('birthday:list')
 
 
-class BirthdayFormMixin:
+class BirthdayCreateView(BirthdayMixin, CreateView):
     form_class = BirthdayForm
-    template_name = 'birthday/birthday.html'
-
-
-# Добавляем миксин первым по списку родительских классов.
-class BirthdayCreateView(BirthdayMixin, BirthdayFormMixin, CreateView):
-    # Не нужно описывать атрибуты: все они унаследованы от BirthdayMixin,
-    # и BirthdayFormMixin.
     pass
 
 
-class BirthdayUpdateView(BirthdayMixin, BirthdayFormMixin, UpdateView):
-    # И здесь все атрибуты наследуются от BirthdayMixin и BirthdayFormMixin.
+class BirthdayUpdateView(BirthdayMixin, UpdateView):
+    form_class = BirthdayForm
     pass
 
 
@@ -45,7 +38,7 @@ class BirthdayUpdateView(BirthdayMixin, BirthdayFormMixin, UpdateView):
 #     form_class = BirthdayForm
 #     # Явным образом указываем шаблон (если не указывать то имя
 #     # шаблона должно быть "имя-модели_form.html" типа birthday_form.html):
-#     template_name = 'birthday/birthday.html'
+#     template_name = 'birthday/birthday_form.html'
 #     # Указываем namespace:name страницы, куда будет перенаправлен пользователь
 #     # после создания объекта:
 #     success_url = reverse_lazy('birthday:list')
@@ -54,7 +47,7 @@ class BirthdayUpdateView(BirthdayMixin, BirthdayFormMixin, UpdateView):
 # class BirthdayUpdateView(UpdateView):
 #     model = Birthday
 #     form_class = BirthdayForm
-#     template_name = 'birthday/birthday.html'
+#     template_name = 'birthday/birthday_form.html'
 #     success_url = reverse_lazy('birthday:list')
 
 
@@ -78,7 +71,7 @@ class BirthdayDeleteView(BirthdayMixin, DeleteView):
 # class BirthdayDeleteView(DeleteView):
 #     """Удаление объекта"""
 #     model = Birthday
-#     # template_name = 'birthday/birthday.html' # Создали другой шаблон удаления
+#     # template_name = 'birthday/birthday_form.html' # Создали другой шаблон удаления
 #     success_url = reverse_lazy('birthday:list')
 
 
@@ -124,14 +117,14 @@ class BirthdayDetailView(DetailView):
 #             form.cleaned_data['birthday']
 #         )
 #         context.update({'birthday_countdown': birthday_countdown})
-#     return render(request, 'birthday/birthday.html', context)
+#     return render(request, 'birthday/birthday_form.html', context)
 
 
 # def birthday(request):   # Обычная форма для GET запросов
 #     print(request.GET)
 #     form = BirthdayForm()
 #     context = {'form': form}
-#     return render(request, 'birthday/birthday.html', context=context)
+#     return render(request, 'birthday/birthday_form.html', context=context)
 
 # def birthday(request):
 #     if request.GET:
@@ -141,7 +134,7 @@ class BirthdayDetailView(DetailView):
 #     else:
 #         form = BirthdayForm(request.GET)
 #     context = {'form': form}
-#     return render(request, 'birthday/birthday.html', context=context)
+#     return render(request, 'birthday/birthday_form.html', context=context)
 
 
 # def birthday_list(request):
@@ -176,4 +169,4 @@ class BirthdayDetailView(DetailView):
 #         # ...и переадресовываем пользователя на страницу со списком записей.
 #         return redirect('birthday:list')
 #     # Если был получен GET-запрос — отображаем форму.
-#     return render(request, 'birthday/birthday.html', context)
+#     return render(request, 'birthday/birthday_form.html', context)
