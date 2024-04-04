@@ -1,13 +1,14 @@
+<!-- birthday/birthday_form.html -->
 {% extends "base.html" %}
 {% load django_bootstrap5 %}
 
 {% block content %}
-  {% if '/edit/' in request.path %}
+  {% if "/edit/" in request.path %}
     <h1>Редактировать запись {{ form.instance.pk }}</h1>
   {% else %}
     <h1>Создать запись</h1>
   {% endif %}
-    <div class="card col-9 m-3">
+  <div class="card col-4">
     <div class="card-header">
       Калькулятор ожидания дня рождения
     </div>
@@ -19,4 +20,4 @@
       </form>
     </div>
   </div>
-{% endblock %}
+{% endblock content %}

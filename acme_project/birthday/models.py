@@ -14,6 +14,10 @@ class Birthday(models.Model):
     #     validators=(MaxValueValidator(100), MinValueValidator(10)))
     image = models.ImageField('Фото', blank=True, upload_to='birthday_images')
 
+    def get_absolute_url(self):
+        # С помощью функции reverse() возвращаем URL объекта.
+        return reverse('birthday:detail', kwargs={'pk': self.pk})
+
     class Meta:
         # Проверка уникальных значений всех полей в совокупности
         constraints = (models.UniqueConstraint(
@@ -23,6 +27,4 @@ class Birthday(models.Model):
         )
         verbose_name = 'человек'
 
-        # def get_absolute_url(self):
-        #     # С помощью функции reverse() возвращаем URL объекта.
-        #     return reverse('birthday:detail', kwargs={'pk': self.pk})
+
