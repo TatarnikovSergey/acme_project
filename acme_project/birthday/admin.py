@@ -9,3 +9,4 @@ class BirthdayAdmin(admin.ModelAdmin):
         'birthday'
     )
 
+    verbose_name = 'Дни рождения'

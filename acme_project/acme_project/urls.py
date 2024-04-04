@@ -10,5 +10,5 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('admin/', admin.site.urls),
     path('birthday/', include('birthday.urls')),
-    # В конце добавляем к списку вызов функции static.
+    # В конце добавляем к списку вызов функции static(пока проектируем!!!).
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

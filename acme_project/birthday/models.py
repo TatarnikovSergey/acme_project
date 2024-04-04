@@ -26,5 +26,6 @@ class Birthday(models.Model):
             ),
         )
         verbose_name = 'человек'
+        verbose_name_plural = 'люди'
 
 
