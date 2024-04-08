@@ -2,7 +2,7 @@ from django import forms
 from .models import Birthday
 # from .validators import real_age
 from django.core.exceptions import ValidationError
-from django.core.mail import  send_mail
+from django.core.mail import send_mail
 
 # Множество с именами участников Ливерпульской четвёрки.
 BEATLES = {'Джон Леннон', 'Пол Маккартни', 'Джордж Харрисон', 'Ринго Старр'}
