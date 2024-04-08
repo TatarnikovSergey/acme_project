@@ -2,6 +2,10 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from .validators import real_age
 from django.urls import reverse
+from django.contrib.auth import get_user_model
+
+# Да, именно так всегда и ссылаемся на модель пользователя!
+User = get_user_model()
 
 
 class Birthday(models.Model):
@@ -13,6 +17,9 @@ class Birthday(models.Model):
     # price = models.IntegerField(
     #     validators=(MaxValueValidator(100), MinValueValidator(10)))
     image = models.ImageField('Фото', blank=True, upload_to='birthday_images')
+    author = models.ForeignKey(
+        User, verbose_name='Автор записи', on_delete=models.CASCADE, null=True
+    )
 
     def get_absolute_url(self):
         # С помощью функции reverse() возвращаем URL объекта.
