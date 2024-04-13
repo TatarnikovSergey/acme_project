@@ -26,3 +26,5 @@ urlpatterns = [
     ),
     # В конце добавляем к списку вызов функции static(пока проектируем!!!).
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# переопределяем вьюшку для ошибки 404:
+handler404 = 'core.views.page_not_found'
