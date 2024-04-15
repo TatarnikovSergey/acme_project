@@ -25,6 +25,14 @@ class OnlyAuthorMixin(UserPassesTestMixin):
 
 class BirthdayListView(ListView):
     model = Birthday
+    # По умолчанию этот класс
+    # выполняет запрос queryset = Birthday.objects.all(),
+    # но мы его переопределим:
+    # ....получаем сразу же теги по схеме многие-ко-многим
+    queryset = Birthday.objects.prefetch_related(
+        'tags'
+    # .... и получаем сразу же авторов по схеме один-ко многим
+    ).select_related('author')
     ordering = 'id'
     paginate_by = 10
 

@@ -24,7 +24,17 @@ urlpatterns = [
         ),
         name='registration',
     ),
-    # В конце добавляем к списку вызов функции static(пока проектируем!!!).
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
 # переопределяем вьюшку для ошибки 404:
 handler404 = 'core.views.page_not_found'
+
+# Если проект запущен в режиме разработки...
+if settings.DEBUG:
+    import debug_toolbar
+    # Добавить к списку urlpatterns список адресов из приложения debug_toolbar:
+    urlpatterns += (path('__debug__/', include(debug_toolbar.urls)),)
+
+
+# В конце добавляем к списку вызов функции static(пока проектируем!!!).
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
