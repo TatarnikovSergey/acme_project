@@ -20,10 +20,19 @@ class Birthday(models.Model):
     author = models.ForeignKey(
         User, verbose_name='Автор записи', on_delete=models.CASCADE, null=True
     )
+    tags = models.ManyToManyField(
+        'Tag',
+        verbose_name='Теги',
+        blank=True,
+        help_text='Удерживайте Ctrl для выбора нескольких вариантов'
+    )
 
     def get_absolute_url(self):
         # С помощью функции reverse() возвращаем URL объекта.
         return reverse('birthday:detail', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
 
     class Meta:
         # Проверка уникальных значений всех полей в совокупности
@@ -48,3 +57,13 @@ class Congratulation(models.Model):
 
     class Meta:
         ordering = ('-created_at',)
+
+
+class Tag(models.Model):
+    tag = models.CharField('Тег', max_length=20)
+    class Meta:
+        verbose_name = 'тег'
+        verbose_name_plural = 'теги'
+
+    def __str__(self):
+        return self.tag
